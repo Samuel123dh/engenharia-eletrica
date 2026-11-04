@@ -1,0 +1,25 @@
+/* Estilos extras para interação 3D */
+.scene-canvas { touch-action: none; }
+
+/* tooltip de peça 3D */
+.part-tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: rgba(0, 20, 40, 0.95);
+  border: 1px solid var(--cyan);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 6px;
+  transform: translate(-50%, -140%);
+  z-index: 200;
+  opacity: 0;
+  transition: opacity .15s;
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.4);
+  white-space: nowrap;
+}
+.part-tooltip.visible { opacity: 1; }
+
+/* destaque de peças selecionadas */
+.selected-glow { outline: 2px solid var(--cyan); }
