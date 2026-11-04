@@ -4,8 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="ELECTRIC 3D — Plataforma interativa de Engenharia Elétrica com modelos 3D, simuladores e conteúdo técnico." />
+  <meta name="theme-color" content="#03060f" />
   <title>ELECTRIC 3D — Laboratório Virtual de Engenharia Elétrica</title>
 
+  <link rel="manifest" href="manifest.json" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -16,13 +18,23 @@
 </head>
 <body>
 
-  <!-- ============ HEADER / NAV ============ -->
+  <!-- ============ LOADING ============ -->
+  <div id="loader" class="loader" role="status" aria-live="polite">
+    <div class="loader-bolt">⚡</div>
+    <div class="loader-bar"><span id="loaderFill"></span></div>
+    <p id="loaderText">Inicializando laboratório 3D…</p>
+  </div>
+
+  <!-- ============ PROGRESS BAR ============ -->
+  <div class="read-progress" aria-hidden="true"><span id="readFill"></span></div>
+
+  <!-- ============ HEADER ============ -->
   <header class="site-header">
     <div class="logo">
       <span class="bolt">⚡</span>
       <span class="logo-text">ELECTRIC<em>3D</em></span>
     </div>
-    <nav class="main-nav" id="mainNav">
+    <nav class="main-nav" id="mainNav" aria-label="Navegação principal">
       <a href="#hero">Início</a>
       <a href="#fundamentos">Fundamentos</a>
       <a href="#componentes">Componentes</a>
@@ -36,13 +48,13 @@
       <a href="#seguranca">Segurança</a>
       <a href="#quiz">Quiz</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">☰</button>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
   </header>
 
   <!-- ============ HERO ============ -->
   <section id="hero" class="hero">
     <div class="hero-canvas-wrap">
-      <canvas id="heroCanvas"></canvas>
+      <canvas id="heroCanvas" aria-label="Animação 3D de núcleo energético"></canvas>
     </div>
     <div class="hero-content">
       <h1>ELECTRIC<span>3D</span></h1>
@@ -56,7 +68,7 @@
     <div class="scroll-hint">▼ role para começar</div>
   </section>
 
-  <!-- ============ INTRODUÇÃO ============ -->
+  <!-- ============ INTRO ============ -->
   <section id="intro" class="section intro">
     <h2 class="section-title">O que é Engenharia Elétrica?</h2>
     <p class="section-lead">
@@ -83,7 +95,7 @@
           <button class="btn-mini" data-anim="toggle" data-scene="fundamentos">▶ Animar corrente</button>
           <button class="btn-mini" data-reset="fundamentos">⟲ Reset</button>
         </div>
-        <canvas id="scene-fundamentos" class="scene-canvas"></canvas>
+        <canvas id="scene-fundamentos" class="scene-canvas" aria-label="Circuito 3D com elétrons em movimento"></canvas>
         <div class="viewer-legend" id="legend-fundamentos">Clique nas peças para saber mais.</div>
       </div>
       <div class="info-panel">
@@ -132,9 +144,11 @@
         <div class="viewer-toolbar">
           <span class="badge">Gire · Zoom · Clique</span>
           <button class="btn-mini" data-anim="toggle" data-scene="componentes">▶ Animar</button>
+          <button class="btn-mini" data-wireframe="componentes" aria-pressed="false">▢ Wireframe</button>
+          <button class="btn-mini" data-autorotate="componentes" aria-pressed="false">↻ Auto-rot.</button>
           <button class="btn-mini" data-reset="componentes">⟲ Reset</button>
         </div>
-        <canvas id="scene-componentes" class="scene-canvas"></canvas>
+        <canvas id="scene-componentes" class="scene-canvas" aria-label="Modelo 3D do componente selecionado"></canvas>
         <div class="viewer-legend" id="legend-componentes">Clique em uma peça do modelo.</div>
       </div>
       <div class="info-panel" id="componentInfo">
@@ -155,9 +169,10 @@
         <div class="viewer-toolbar">
           <span class="badge">3D</span>
           <button class="btn-mini" data-anim="toggle" data-scene="instalacoes">▶ Animar</button>
+          <button class="btn-mini" data-wireframe="instalacoes" aria-pressed="false">▢ Wireframe</button>
           <button class="btn-mini" data-reset="instalacoes">⟲ Reset</button>
         </div>
-        <canvas id="scene-instalacoes" class="scene-canvas"></canvas>
+        <canvas id="scene-instalacoes" class="scene-canvas" aria-label="Instalação elétrica residencial em 3D"></canvas>
         <div class="viewer-legend" id="legend-instalacoes">Clique em peças do quadro, fios e tomadas.</div>
       </div>
       <div class="info-panel">
@@ -185,9 +200,10 @@
         <div class="viewer-toolbar">
           <span class="badge">3D Animado</span>
           <button class="btn-mini" data-anim="toggle" data-scene="geracao">▶ Animar</button>
+          <button class="btn-mini" data-wireframe="geracao" aria-pressed="false">▢ Wireframe</button>
           <button class="btn-mini" data-reset="geracao">⟲ Reset</button>
         </div>
-        <canvas id="scene-geracao" class="scene-canvas"></canvas>
+        <canvas id="scene-geracao" class="scene-canvas" aria-label="Usinas de geração em 3D"></canvas>
         <div class="viewer-legend" id="legend-geracao">Clique em turbina, gerador, painéis, etc.</div>
       </div>
       <div class="info-panel">
@@ -212,9 +228,10 @@
       <div class="viewer-toolbar">
         <span class="badge">Caminho da energia</span>
         <button class="btn-mini" data-anim="toggle" data-scene="transmissao">▶ Animar fluxo</button>
+        <button class="btn-mini" data-wireframe="transmissao" aria-pressed="false">▢ Wireframe</button>
         <button class="btn-mini" data-reset="transmissao">⟲ Reset</button>
       </div>
-      <canvas id="scene-transmissao" class="scene-canvas tall"></canvas>
+      <canvas id="scene-transmissao" class="scene-canvas tall" aria-label="Torres de transmissão e fluxo de energia"></canvas>
       <div class="viewer-legend" id="legend-transmissao">Torres, transformadores, subestação e casa.</div>
     </div>
     <div class="grid-3 mt">
@@ -234,9 +251,11 @@
         <div class="viewer-toolbar">
           <span class="badge">3D Animado</span>
           <button class="btn-mini" data-anim="toggle" data-scene="maquinas">▶ Girar rotor</button>
+          <button class="btn-mini" data-xray="maquinas" aria-pressed="false">🔍 Raio-X</button>
+          <button class="btn-mini" data-wireframe="maquinas" aria-pressed="false">▢ Wireframe</button>
           <button class="btn-mini" data-reset="maquinas">⟲ Reset</button>
         </div>
-        <canvas id="scene-maquinas" class="scene-canvas"></canvas>
+        <canvas id="scene-maquinas" class="scene-canvas" aria-label="Motor elétrico com interior visível"></canvas>
         <div class="viewer-legend" id="legend-maquinas">Clique em estator, rotor, bobinas, eixo.</div>
       </div>
       <div class="info-panel">
@@ -261,9 +280,10 @@
         <div class="viewer-toolbar">
           <span class="badge">3D</span>
           <button class="btn-mini" data-anim="toggle" data-scene="eletronica">▶ Animar</button>
+          <button class="btn-mini" data-wireframe="eletronica" aria-pressed="false">▢ Wireframe</button>
           <button class="btn-mini" data-reset="eletronica">⟲ Reset</button>
         </div>
-        <canvas id="scene-eletronica" class="scene-canvas"></canvas>
+        <canvas id="scene-eletronica" class="scene-canvas" aria-label="Placa Arduino e módulos de automação"></canvas>
         <div class="viewer-legend" id="legend-eletronica">Clique nos módulos e sensores.</div>
       </div>
       <div class="info-panel">
@@ -288,9 +308,10 @@
       <div class="viewer-toolbar">
         <span class="badge">Fluxo solar</span>
         <button class="btn-mini" data-anim="toggle" data-scene="renovavel">▶ Animar</button>
+        <button class="btn-mini" data-wireframe="renovavel" aria-pressed="false">▢ Wireframe</button>
         <button class="btn-mini" data-reset="renovavel">⟲ Reset</button>
       </div>
-      <canvas id="scene-renovavel" class="scene-canvas tall"></canvas>
+      <canvas id="scene-renovavel" class="scene-canvas tall" aria-label="Sistema solar fotovoltaico em 3D"></canvas>
       <div class="viewer-legend" id="legend-renovavel">Painéis, controlador, bateria, inversor, casa.</div>
     </div>
   </section>
@@ -302,27 +323,24 @@
 
     <div class="sim-grid">
 
-      <!-- Lei de Ohm -->
       <div class="sim-card">
         <h3>Lei de Ohm</h3>
         <p class="formula">I = V / R</p>
         <label>Tensão V (V): <input type="range" id="ohmV" min="1" max="220" value="12" /><output id="ohmVout">12</output></label>
         <label>Resistência R (Ω): <input type="range" id="ohmR" min="1" max="1000" value="6" /><output id="ohmRout">6</output></label>
         <div class="result" id="ohmResult">I = 2.00 A</div>
-        <small>Explicação: quanto maior a tensão, maior a corrente; quanto maior a resistência, menor a corrente.</small>
+        <small>Quanto maior a tensão, maior a corrente; quanto maior a resistência, menor a corrente.</small>
       </div>
 
-      <!-- Potência -->
       <div class="sim-card">
         <h3>Potência Elétrica</h3>
         <p class="formula">P = V · I</p>
         <label>Tensão V (V): <input type="range" id="powV" min="1" max="220" value="127" /><output id="powVout">127</output></label>
         <label>Corrente I (A): <input type="range" id="powI" min="0.1" max="30" step="0.1" value="5" /><output id="powIout">5.0</output></label>
         <div class="result" id="powResult">P = 635 W</div>
-        <small>Explicação: a potência é o produto da tensão pela corrente.</small>
+        <small>A potência é o produto da tensão pela corrente.</small>
       </div>
 
-      <!-- Série -->
       <div class="sim-card">
         <h3>Circuito em Série</h3>
         <p class="formula">R_eq = R1 + R2 + ...</p>
@@ -333,10 +351,10 @@
         <p>Resistores: <span id="serieList">10 Ω</span></p>
         <p>Tensão fixa: <strong>12 V</strong></p>
         <div class="result" id="serieResult">R_eq = 10 Ω · I = 1.20 A</div>
-        <small>Explicação: em série, a resistência soma e a corrente é a mesma em todos.</small>
+        <canvas id="serieCanvas" class="circuit-canvas" width="600" height="140" aria-label="Desenho do circuito em série"></canvas>
+        <small>Em série, a resistência soma e a corrente é a mesma em todos.</small>
       </div>
 
-      <!-- Paralelo -->
       <div class="sim-card">
         <h3>Circuito em Paralelo</h3>
         <p class="formula">1/R_eq = 1/R1 + 1/R2 + ...</p>
@@ -347,10 +365,10 @@
         <p>Resistores: <span id="paraleloList">10 Ω</span></p>
         <p>Tensão fixa: <strong>12 V</strong></p>
         <div class="result" id="paraleloResult">R_eq = 10 Ω · I_total = 1.20 A</div>
-        <small>Explicação: em paralelo, a tensão é a mesma e a corrente se divide.</small>
+        <canvas id="paraleloCanvas" class="circuit-canvas" width="600" height="140" aria-label="Desenho do circuito em paralelo"></canvas>
+        <small>Em paralelo, a tensão é a mesma e a corrente se divide.</small>
       </div>
 
-      <!-- Transformador -->
       <div class="sim-card">
         <h3>Transformador</h3>
         <p class="formula">V2 = V1 · (N2 / N1)</p>
@@ -362,7 +380,6 @@
         <small>Relação de espiras define se é elevador (N2>N1) ou abaixador (N2<N1).</small>
       </div>
 
-      <!-- Energia residencial -->
       <div class="sim-card">
         <h3>Consumo Residencial</h3>
         <p class="formula">E(kWh) = P(W) · h / 1000</p>
@@ -374,7 +391,6 @@
         <div class="result" id="resResult">E = 90 kWh/mês · R$ 67,50</div>
       </div>
 
-      <!-- Solar -->
       <div class="sim-card">
         <h3>Energia Solar</h3>
         <p class="formula">E = P_painel · HSP · N_painéis</p>
@@ -383,6 +399,7 @@
         <label>Nº de painéis: <input type="number" id="solN" value="4" /></label>
         <button class="btn-mini" id="solCalc">Calcular</button>
         <div class="result" id="solResult">E = 11.00 kWh/dia</div>
+        <canvas id="solarCanvas" class="circuit-canvas" width="600" height="120" aria-label="Animação da geração solar"></canvas>
         <small>HSP = horas de sol pleno equivalente (irradiação de 1000 W/m²).</small>
       </div>
 
@@ -411,6 +428,7 @@
   <!-- ============ GLOSSÁRIO ============ -->
   <section id="glossario" class="section">
     <h2 class="section-title">Glossário</h2>
+    <input type="search" id="glossarySearch" class="glossary-search" placeholder="Pesquisar termo…" aria-label="Pesquisar no glossário" />
     <div class="grid-3" id="glossaryGrid"></div>
   </section>
 
@@ -419,7 +437,8 @@
     <h2 class="section-title">Questionário</h2>
     <div class="quiz-box" id="quizBox">
       <p id="quizQuestion">Carregando...</p>
-      <div id="quizOptions" class="quiz-options"></div>
+      <div id="quizOptions" class="quiz-options" role="group" aria-label="Opções de resposta"></div>
+      <div id="quizExplain" class="quiz-explain" aria-live="polite"></div>
       <button class="btn btn-primary" id="quizNext" disabled>Próxima</button>
       <p class="quiz-score" id="quizScore"></p>
     </div>
@@ -427,20 +446,4 @@
 
   <!-- ============ FOOTER ============ -->
   <footer class="site-footer">
-    <p>⚡ <strong>ELECTRIC 3D</strong> — Plataforma educacional de Engenharia Elétrica.</p>
-    <p class="small">Conteúdo educativo. Não substitui treinamento profissional nem a NR-10. Modelos gerados proceduralmente com Three.js.</p>
-  </footer>
-
-  <!-- ============ SCRIPTS (ES Modules via CDN) ============ -->
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
-    }
-  }
-  </script>
-
-  <script type="module" src="js/main.js"></script>
-</body>
-</html>
+    <p>⚡ <strong>ELECTRIC 3D</strong> — Plataforma educacional de Engenharia Elétrica
