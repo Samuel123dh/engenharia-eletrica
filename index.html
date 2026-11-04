@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ELECTRIC 3D — Plataforma interativa de Engenharia Elétrica com modelos 3D, simuladores e conteúdo técnico." />
+  <title>ELECTRIC 3D — Laboratório Virtual de Engenharia Elétrica</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/models.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ============ HEADER / NAV ============ -->
+  <header class="site-header">
+    <div class="logo">
+      <span class="bolt">⚡</span>
+      <span class="logo-text">ELECTRIC<em>3D</em></span>
+    </div>
+    <nav class="main-nav" id="mainNav">
+      <a href="#hero">Início</a>
+      <a href="#fundamentos">Fundamentos</a>
+      <a href="#componentes">Componentes</a>
+      <a href="#instalacoes">Instalações</a>
+      <a href="#geracao">Geração</a>
+      <a href="#transmissao">Transmissão</a>
+      <a href="#maquinas">Máquinas</a>
+      <a href="#eletronica">Eletrônica</a>
+      <a href="#renovavel">Renovável</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="#seguranca">Segurança</a>
+      <a href="#quiz">Quiz</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">☰</button>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section id="hero" class="hero">
+    <div class="hero-canvas-wrap">
+      <canvas id="heroCanvas"></canvas>
+    </div>
+    <div class="hero-content">
+      <h1>ELECTRIC<span>3D</span></h1>
+      <p class="tagline">Laboratório Virtual de Engenharia Elétrica</p>
+      <p class="hero-sub">Explore equipamentos em 3D, gire com o mouse, aproxime com o scroll e aprenda como a eletricidade funciona — do elétron à usina.</p>
+      <div class="hero-actions">
+        <a href="#fundamentos" class="btn btn-primary">Começar a explorar</a>
+        <a href="#simuladores" class="btn btn-ghost">Ir aos simuladores</a>
+      </div>
+    </div>
+    <div class="scroll-hint">▼ role para começar</div>
+  </section>
+
+  <!-- ============ INTRODUÇÃO ============ -->
+  <section id="intro" class="section intro">
+    <h2 class="section-title">O que é Engenharia Elétrica?</h2>
+    <p class="section-lead">
+      A Engenharia Elétrica estuda a geração, transmissão, distribuição e uso da energia elétrica.
+      Ela está presente em tudo: iluminação, motores, eletrônica, automação, telecomunicações e energia renovável.
+      Este laboratório virtual mostra, em 3D, como cada componente e sistema funciona.
+    </p>
+    <div class="grid-3">
+      <div class="card tech-card"><div class="card-icon">🔌</div><h3>Visual</h3><p>Modelos 3D interativos com seleção de peças e animações.</p></div>
+      <div class="card tech-card"><div class="card-icon">📐</div><h3>Técnico</h3><p>Fórmulas reais, cálculos corretos e simuladores funcionais.</p></div>
+      <div class="card tech-card"><div class="card-icon">🛡️</div><h3>Seguro</h3><p>Conteúdo focado em prevenção, NR-10 e boas práticas.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ FUNDAMENTOS ============ -->
+  <section id="fundamentos" class="section">
+    <h2 class="section-title">A. Fundamentos da Eletricidade</h2>
+    <p class="section-lead">Conceitos básicos com visualização 3D do movimento de cargas.</p>
+
+    <div class="split">
+      <div class="viewer-panel">
+        <div class="viewer-toolbar">
+          <span class="badge">3D Interativo</span>
+          <button class="btn-mini" data-anim="toggle" data-scene="fundamentos">▶ Animar corrente</button>
+          <button class="btn-mini" data-reset="fundamentos">⟲ Reset</button>
+        </div>
+        <canvas id="scene-fundamentos" class="scene-canvas"></canvas>
+        <div class="viewer-legend" id="legend-fundamentos">Clique nas peças para saber mais.</div>
+      </div>
+      <div class="info-panel">
+        <h3>Conceitos essenciais</h3>
+        <ul class="concept-list">
+          <li><strong>Tensão (V):</strong> diferença de potencial que impulsiona as cargas. Unidade: Volt.</li>
+          <li><strong>Corrente (A):</strong> fluxo ordenado de cargas. Unidade: Ampère.</li>
+          <li><strong>Resistência (Ω):</strong> oposição à passagem de corrente. Unidade: Ohm.</li>
+          <li><strong>Potência (W):</strong> energia por unidade de tempo. P = V·I.</li>
+          <li><strong>Energia (kWh):</strong> potência × tempo. 1 kWh = 1000 W por 1 hora.</li>
+          <li><strong>CC vs CA:</strong> corrente contínua (sentido fixo) e alternada (inverte periodicamente).</li>
+          <li><strong>Frequência (Hz):</strong> ciclos por segundo. No Brasil, a rede é 60 Hz.</li>
+        </ul>
+        <div class="formula-box">
+          <span class="formula">V = R · I</span>
+          <small>Lei de Ohm — a base de quase tudo.</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMPONENTES ============ -->
+  <section id="componentes" class="section alt">
+    <h2 class="section-title">B. Componentes Elétricos</h2>
+    <p class="section-lead">Selecione um componente para visualizar em 3D, girar e clicar nas peças.</p>
+
+    <div class="tabs" id="componentTabs">
+      <button class="tab active" data-model="resistor">Resistor</button>
+      <button class="tab" data-model="capacitor">Capacitor</button>
+      <button class="tab" data-model="indutor">Indutor</button>
+      <button class="tab" data-model="diodo">Diodo</button>
+      <button class="tab" data-model="led">LED</button>
+      <button class="tab" data-model="transistor">Transistor</button>
+      <button class="tab" data-model="fusivel">Fusível</button>
+      <button class="tab" data-model="disjuntor">Disjuntor</button>
+      <button class="tab" data-model="rele">Relé</button>
+      <button class="tab" data-model="interruptor">Interruptor</button>
+      <button class="tab" data-model="tomada">Tomada</button>
+      <button class="tab" data-model="bateria">Bateria</button>
+      <button class="tab" data-model="fonte">Fonte</button>
+      <button class="tab" data-model="transformador">Transformador</button>
+    </div>
+
+    <div class="split">
+      <div class="viewer-panel">
+        <div class="viewer-toolbar">
+          <span class="badge">Gire · Zoom · Clique</span>
+          <button class="btn-mini" data-anim="toggle" data-scene="componentes">▶ Animar</button>
+          <button class="btn-mini" data-reset="componentes">⟲ Reset</button>
+        </div>
+        <canvas id="scene-componentes" class="scene-canvas"></canvas>
+        <div class="viewer-legend" id="legend-componentes">Clique em uma peça do modelo.</div>
+      </div>
+      <div class="info-panel" id="componentInfo">
+        <h3 id="compTitle">Resistor</h3>
+        <p id="compDesc">Componente que limita a corrente elétrica em um circuito.</p>
+        <ul id="compFacts" class="facts"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INSTALAÇÕES ============ -->
+  <section id="instalacoes" class="section">
+    <h2 class="section-title">C. Instalações Elétricas</h2>
+    <p class="section-lead">Como uma instalação residencial é organizada do quadro ao ponto final.</p>
+
+    <div class="split">
+      <div class="viewer-panel">
+        <div class="viewer-toolbar">
+          <span class="badge">3D</span>
+          <button class="btn-mini" data-anim="toggle" data-scene="instalacoes">▶ Animar</button>
+          <button class="btn-mini" data-reset="instalacoes">⟲ Reset</button>
+        </div>
+        <canvas id="scene-instalacoes" class="scene-canvas"></canvas>
+        <div class="viewer-legend" id="legend-instalacoes">Clique em peças do quadro, fios e tomadas.</div>
+      </div>
+      <div class="info-panel">
+        <h3>Do quadro à tomada</h3>
+        <ul class="concept-list">
+          <li><strong>Quadro de distribuição:</strong> centraliza disjuntores e DR/DPS.</li>
+          <li><strong>Disjuntor:</strong> protege contra sobrecarga e curto-circuito.</li>
+          <li><strong>DR:</strong> desliga quando há fuga de corrente (proteção de pessoas).</li>
+          <li><strong>DPS:</strong> protege contra surtos de tensão (raios).</li>
+          <li><strong>Aterramento:</strong> caminho seguro para correntes de falta.</li>
+          <li><strong>Bitolas:</strong> cada circuito exige cabo adequado à corrente.</li>
+        </ul>
+        <div class="warn-box">⚠️ Instalações devem ser feitas por profissionais qualificados. Nunca improvise.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GERAÇÃO ============ -->
+  <section id="geracao" class="section alt">
+    <h2 class="section-title">D. Geração de Energia</h2>
+    <p class="section-lead">Das fontes primárias à eletricidade que chega à sua casa.</p>
+
+    <div class="split">
+      <div class="viewer-panel">
+        <div class="viewer-toolbar">
+          <span class="badge">3D Animado</span>
+          <button class="btn-mini" data-anim="toggle" data-scene="geracao">▶ Animar</button>
+          <button class="btn-mini" data-reset="geracao">⟲ Reset</button>
+        </div>
+        <canvas id="scene-geracao" class="scene-canvas"></canvas>
+        <div class="viewer-legend" id="legend-geracao">Clique em turbina, gerador, painéis, etc.</div>
+      </div>
+      <div class="info-panel">
+        <h3>Fontes de geração</h3>
+        <ul class="concept-list">
+          <li><strong>Hidrelétrica:</strong> queda d'água gira turbina → gerador.</li>
+          <li><strong>Solar:</strong> efeito fotovoltaico converte luz em eletricidade.</li>
+          <li><strong>Eólica:</strong> vento gira pás → gerador.</li>
+          <li><strong>Termelétrica:</strong> combustível gera vapor → turbina → gerador.</li>
+          <li><strong>Alternador:</strong> converte energia mecânica em CA.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRANSMISSÃO ============ -->
+  <section id="transmissao" class="section">
+    <h2 class="section-title">E. Transmissão e Distribuição</h2>
+    <p class="section-lead">O caminho da energia: usina → transmissão → subestação → distribuição → residência.</p>
+
+    <div class="viewer-panel full">
+      <div class="viewer-toolbar">
+        <span class="badge">Caminho da energia</span>
+        <button class="btn-mini" data-anim="toggle" data-scene="transmissao">▶ Animar fluxo</button>
+        <button class="btn-mini" data-reset="transmissao">⟲ Reset</button>
+      </div>
+      <canvas id="scene-transmissao" class="scene-canvas tall"></canvas>
+      <div class="viewer-legend" id="legend-transmissao">Torres, transformadores, subestação e casa.</div>
+    </div>
+    <div class="grid-3 mt">
+      <div class="card tech-card"><h3>Alta tensão</h3><p>Reduz perdas em longas distâncias (P = I²R).</p></div>
+      <div class="card tech-card"><h3>Subestação</h3><p>Abaixa a tensão com transformadores de potência.</p></div>
+      <div class="card tech-card"><h3>Distribuição</h3><p>Postes e redes levam energia até a residência.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ MÁQUINAS ============ -->
+  <section id="maquinas" class="section alt">
+    <h2 class="section-title">F. Máquinas Elétricas</h2>
+    <p class="section-lead">Motores, geradores e transformadores com interior visível.</p>
+
+    <div class="split">
+      <div class="viewer-panel">
+        <div class="viewer-toolbar">
+          <span class="badge">3D Animado</span>
+          <button class="btn-mini" data-anim="toggle" data-scene="maquinas">▶ Girar rotor</button>
+          <button class="btn-mini" data-reset="maquinas">⟲ Reset</button>
+        </div>
+        <canvas id="scene-maquinas" class="scene-canvas"></canvas>
+        <div class="viewer-legend" id="legend-maquinas">Clique em estator, rotor, bobinas, eixo.</div>
+      </div>
+      <div class="info-panel">
+        <h3>Como funcionam</h3>
+        <ul class="concept-list">
+          <li><strong>Motor CA:</strong> campo magnético girante no estator induz corrente no rotor.</li>
+          <li><strong>Motor CC:</strong> escovas e comutador invertem corrente na armadura.</li>
+          <li><strong>Gerador:</strong> movimento mecânico induz tensão (Lei de Faraday).</li>
+          <li><strong>Transformador:</strong> altera tensão por indução entre bobinas (relação de espiras).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ELETRÔNICA ============ -->
+  <section id="eletronica" class="section">
+    <h2 class="section-title">G. Eletrônica e Automação</h2>
+    <p class="section-lead">Arduino, CLP, sensores, contatores e a lógica da automação.</p>
+
+    <div class="split">
+      <div class="viewer-panel">
+        <div class="viewer-toolbar">
+          <span class="badge">3D</span>
+          <button class="btn-mini" data-anim="toggle" data-scene="eletronica">▶ Animar</button>
+          <button class="btn-mini" data-reset="eletronica">⟲ Reset</button>
+        </div>
+        <canvas id="scene-eletronica" class="scene-canvas"></canvas>
+        <div class="viewer-legend" id="legend-eletronica">Clique nos módulos e sensores.</div>
+      </div>
+      <div class="info-panel">
+        <h3>Automação industrial</h3>
+        <ul class="concept-list">
+          <li><strong>Arduino:</strong> microcontrolador para prototipagem.</li>
+          <li><strong>CLP:</strong> controlador lógico programável industrial.</li>
+          <li><strong>Sensores:</strong> convertem grandezas físicas em sinais elétricos.</li>
+          <li><strong>Contator:</strong> chave magnética para cargas potentes.</li>
+          <li><strong>Inversor de frequência:</strong> controla velocidade de motores.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RENOVÁVEL ============ -->
+  <section id="renovavel" class="section alt">
+    <h2 class="section-title">H. Energia Renovável</h2>
+    <p class="section-lead">Sistema solar fotovoltaico: da luz ao fornecimento de energia.</p>
+
+    <div class="viewer-panel full">
+      <div class="viewer-toolbar">
+        <span class="badge">Fluxo solar</span>
+        <button class="btn-mini" data-anim="toggle" data-scene="renovavel">▶ Animar</button>
+        <button class="btn-mini" data-reset="renovavel">⟲ Reset</button>
+      </div>
+      <canvas id="scene-renovavel" class="scene-canvas tall"></canvas>
+      <div class="viewer-legend" id="legend-renovavel">Painéis, controlador, bateria, inversor, casa.</div>
+    </div>
+  </section>
+
+  <!-- ============ SIMULADORES ============ -->
+  <section id="simuladores" class="section">
+    <h2 class="section-title">Simuladores Interativos</h2>
+    <p class="section-lead">Cálculos reais com fórmulas explicadas.</p>
+
+    <div class="sim-grid">
+
+      <!-- Lei de Ohm -->
+      <div class="sim-card">
+        <h3>Lei de Ohm</h3>
+        <p class="formula">I = V / R</p>
+        <label>Tensão V (V): <input type="range" id="ohmV" min="1" max="220" value="12" /><output id="ohmVout">12</output></label>
+        <label>Resistência R (Ω): <input type="range" id="ohmR" min="1" max="1000" value="6" /><output id="ohmRout">6</output></label>
+        <div class="result" id="ohmResult">I = 2.00 A</div>
+        <small>Explicação: quanto maior a tensão, maior a corrente; quanto maior a resistência, menor a corrente.</small>
+      </div>
+
+      <!-- Potência -->
+      <div class="sim-card">
+        <h3>Potência Elétrica</h3>
+        <p class="formula">P = V · I</p>
+        <label>Tensão V (V): <input type="range" id="powV" min="1" max="220" value="127" /><output id="powVout">127</output></label>
+        <label>Corrente I (A): <input type="range" id="powI" min="0.1" max="30" step="0.1" value="5" /><output id="powIout">5.0</output></label>
+        <div class="result" id="powResult">P = 635 W</div>
+        <small>Explicação: a potência é o produto da tensão pela corrente.</small>
+      </div>
+
+      <!-- Série -->
+      <div class="sim-card">
+        <h3>Circuito em Série</h3>
+        <p class="formula">R_eq = R1 + R2 + ...</p>
+        <div class="sim-controls">
+          <button class="btn-mini" id="addSerie">+ Resistor</button>
+          <button class="btn-mini" id="remSerie">− Resistor</button>
+        </div>
+        <p>Resistores: <span id="serieList">10 Ω</span></p>
+        <p>Tensão fixa: <strong>12 V</strong></p>
+        <div class="result" id="serieResult">R_eq = 10 Ω · I = 1.20 A</div>
+        <small>Explicação: em série, a resistência soma e a corrente é a mesma em todos.</small>
+      </div>
+
+      <!-- Paralelo -->
+      <div class="sim-card">
+        <h3>Circuito em Paralelo</h3>
+        <p class="formula">1/R_eq = 1/R1 + 1/R2 + ...</p>
+        <div class="sim-controls">
+          <button class="btn-mini" id="addParalelo">+ Resistor</button>
+          <button class="btn-mini" id="remParalelo">− Resistor</button>
+        </div>
+        <p>Resistores: <span id="paraleloList">10 Ω</span></p>
+        <p>Tensão fixa: <strong>12 V</strong></p>
+        <div class="result" id="paraleloResult">R_eq = 10 Ω · I_total = 1.20 A</div>
+        <small>Explicação: em paralelo, a tensão é a mesma e a corrente se divide.</small>
+      </div>
+
+      <!-- Transformador -->
+      <div class="sim-card">
+        <h3>Transformador</h3>
+        <p class="formula">V2 = V1 · (N2 / N1)</p>
+        <label>Tensão primária V1 (V): <input type="number" id="trV1" value="127" /></label>
+        <label>Espiras N1: <input type="number" id="trN1" value="100" /></label>
+        <label>Espiras N2: <input type="number" id="trN2" value="50" /></label>
+        <button class="btn-mini" id="trCalc">Calcular</button>
+        <div class="result" id="trResult">V2 = 63.5 V</div>
+        <small>Relação de espiras define se é elevador (N2>N1) ou abaixador (N2<N1).</small>
+      </div>
+
+      <!-- Energia residencial -->
+      <div class="sim-card">
+        <h3>Consumo Residencial</h3>
+        <p class="formula">E(kWh) = P(W) · h / 1000</p>
+        <label>Aparelho (W): <input type="number" id="resP" value="1500" /></label>
+        <label>Horas/dia: <input type="number" id="resH" value="2" step="0.1" /></label>
+        <label>Dias/mês: <input type="number" id="resD" value="30" /></label>
+        <label>Tarifa (R$/kWh): <input type="number" id="resT" value="0.75" step="0.01" /></label>
+        <button class="btn-mini" id="resCalc">Calcular</button>
+        <div class="result" id="resResult">E = 90 kWh/mês · R$ 67,50</div>
+      </div>
+
+      <!-- Solar -->
+      <div class="sim-card">
+        <h3>Energia Solar</h3>
+        <p class="formula">E = P_painel · HSP · N_painéis</p>
+        <label>Potência do painel (W): <input type="number" id="solP" value="550" /></label>
+        <label>Horas de sol pleno (HSP): <input type="number" id="solH" value="5" step="0.1" /></label>
+        <label>Nº de painéis: <input type="number" id="solN" value="4" /></label>
+        <button class="btn-mini" id="solCalc">Calcular</button>
+        <div class="result" id="solResult">E = 11.00 kWh/dia</div>
+        <small>HSP = horas de sol pleno equivalente (irradiação de 1000 W/m²).</small>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ SEGURANÇA ============ -->
+  <section id="seguranca" class="section alt safety">
+    <h2 class="section-title">🛡️ Segurança Elétrica</h2>
+    <p class="section-lead">Conteúdo de prevenção. Nunca trabalhe em instalações energizadas sem qualificação.</p>
+
+    <div class="grid-3">
+      <div class="card warn"><h3>Choque elétrico</h3><p>A corrente atravessa o corpo e pode causar queimaduras, parada cardíaca e morte. A gravidade depende de tensão, corrente, tempo e caminho.</p></div>
+      <div class="card warn"><h3>Curto-circuito</h3><p>Contato direto entre fases ou fase-neutro. Gera corrente altíssima, calor e incêndio. Só disjuntores e fusíveis dimensionados protegem.</p></div>
+      <div class="card warn"><h3>Sobrecarga</h3><p>Mais corrente que o cabo suporta. Superaquece a fiação e pode iniciar incêndio. Respeite a bitola e o disjuntor do circuito.</p></div>
+      <div class="card warn"><h3>Aterramento</h3><p>Caminho seguro para correntes de falta. Sem ele, o DR não protege e o chassi pode ficar energizado.</p></div>
+      <div class="card warn"><h3>EPIs e NR-10</h3><p>A NR-10 exige treinamento, autorização, EPIs (luvas isolantes, calçado, óculos), desenergização e bloqueio/sinalização.</p></div>
+      <div class="card warn"><h3>Nunca faça</h3><p>Não improvise, não mexa em quadro energizado, não remova o pino terra, não use cabo sem bitola, não trabalhe sozinho.</p></div>
+    </div>
+
+    <div class="alert danger mt">
+      ⚠️ <strong>Aviso:</strong> procedimentos em instalações energizadas exigem profissional qualificado e autorizado conforme NR-10. Este site é educativo e não substitui treinamento prático.
+    </div>
+  </section>
+
+  <!-- ============ GLOSSÁRIO ============ -->
+  <section id="glossario" class="section">
+    <h2 class="section-title">Glossário</h2>
+    <div class="grid-3" id="glossaryGrid"></div>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section id="quiz" class="section alt">
+    <h2 class="section-title">Questionário</h2>
+    <div class="quiz-box" id="quizBox">
+      <p id="quizQuestion">Carregando...</p>
+      <div id="quizOptions" class="quiz-options"></div>
+      <button class="btn btn-primary" id="quizNext" disabled>Próxima</button>
+      <p class="quiz-score" id="quizScore"></p>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <p>⚡ <strong>ELECTRIC 3D</strong> — Plataforma educacional de Engenharia Elétrica.</p>
+    <p class="small">Conteúdo educativo. Não substitui treinamento profissional nem a NR-10. Modelos gerados proceduralmente com Three.js.</p>
+  </footer>
+
+  <!-- ============ SCRIPTS (ES Modules via CDN) ============ -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
